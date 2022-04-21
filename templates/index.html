@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake News Detector</title>
+
+    <!-- Bootstrap css link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Custom styles -->
+    <link type="text/css" href="{{url_for('static',filename='styles/style.css')}}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        body {
+            width: 60vw;
+            padding: 3em 3em 1em 3em;
+            margin: 3em auto 0 auto;
+            box-shadow: 7px 7px 10px #c8c1c1;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, .25);
+        }
+
+        .title {
+            margin: 0 auto 2.5em auto;
+        }
+
+        .btn {
+            margin: 2em auto 5em auto;
+            width: 20vw;
+        }
+
+        #condition {
+            margin: 7em auto 1em auto;
+            color: rgba(0, 0, 0, .65);
+            font-size: 12px;
+        }
+
+        #copyright {
+            margin: 1em auto 0.5em auto;
+            color: rgba(0, 0, 0, .65);
+            font-size: 12px;
+        }
+
+        .fake {
+            color: rgb(226, 41, 41);
+        }
+
+        .real {
+            color: rgba(4, 251, 4);
+        }
+
+        @media only screen and (max-width: 500px) {
+            body {
+                width: 90vw;
+                padding: 2em;
+            }
+
+            .title {
+                margin: 0 auto 1.5em auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h4 class="title">FAKE NEWS DETECTOR</h4>
+
+    <textarea class="form-control" rows="7" id="textArea" placeholder="Enter your news here . ."></textarea>
+    <button type="submit" onclick="get_detection()" class="btn btn-dark">Detect</button>
+
+    <h5 id="result">Result : __________</h5>
+
+    <div id="condition">*According to 42,000+ news articles (Using Logistic Regression model)</div>
+    <div id="copyright">&#169; Sai Teja Erukude 2022</div>
+</body>
+
+
+<script>
+    function get_detection () {
+        var user_news = $( "#textArea" ).val();
+
+        $.get( "/detect", { user_news: user_news } ).done( function ( res ) {
+            var result = document.getElementById( "result" );
+            if ( result.classList.contains( "fake" ) )
+                result.classList.remove( "fake" );
+            if ( result.classList.contains( "real" ) )
+                result.classList.remove( "real" );
+
+            if ( res[ 1 ] == 0 ) {
+                result.innerHTML = "This news is FAKE!*";
+                result.classList.add( "fake" );
+            } else if ( res[ 1 ] == 1 ) {
+                result.innerHTML = "This news is REAL!*";
+                result.classList.add( "real" );
+            }
+        } ).fail( function () {
+            alert( "error" );
+        } );
+    }
+</script>
+
+</html>

@@ -1,0 +1,37 @@
+body {
+    width: 60vw;
+    padding: 3em;
+    margin: 5em auto 0 auto;
+    box-shadow: 7px 7px 10px #c8c1c1;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, .25);
+}
+
+.title {
+    margin: 0 auto 2.5em auto;
+}
+
+.btn {
+    margin: 2em auto 5em auto;
+    width: 20vw;
+}
+
+#copyright {
+    margin: 7em auto 0em auto;
+    color: rgba(0, 0, 0, .65)
+}
+
+.fake {
+    color: rgb(226, 41, 41);
+}
+
+.real {
+    color: rgba(4, 251, 4);
+}
+
+@media only screen and (max-width: 500px) {
+    body {
+        width: 90vw;
+    }
+}
