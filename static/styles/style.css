@@ -1,7 +1,7 @@
 body {
     width: 60vw;
-    padding: 3em;
-    margin: 5em auto 0 auto;
+    padding: 3em 3em 1em 3em;
+    margin: 3em auto 0 auto;
     box-shadow: 7px 7px 10px #c8c1c1;
     border-radius: 10px;
     text-align: center;
@@ -17,9 +17,16 @@ body {
     width: 20vw;
 }
 
+#condition {
+    margin: 7em auto 1em auto;
+    color: rgba(0, 0, 0, .65);
+    font-size: 12px;
+}
+
 #copyright {
-    margin: 7em auto 0em auto;
-    color: rgba(0, 0, 0, .65)
+    margin: 1em auto 0.5em auto;
+    color: rgba(0, 0, 0, .65);
+    font-size: 12px;
 }
 
 .fake {
@@ -33,5 +40,10 @@ body {
 @media only screen and (max-width: 500px) {
     body {
         width: 90vw;
+        padding: 2em;
+    }
+
+    .title {
+        margin: 0 auto 1.5em auto;
     }
 }
